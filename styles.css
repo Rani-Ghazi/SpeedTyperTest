@@ -1,0 +1,772 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Global Variables --- */
+:root {
+    --light-bg-color: #f4f4f4;
+    --dark-bg-color: #121212;
+    --light-text-color: #333;
+    --dark-text-color: #e0e0e0;  /* Dark mode text color */
+    --light-container-bg: rgba(255, 255, 255, 0.8);
+    --dark-container-bg: rgba(33, 33, 33, 0.9);
+    --primary-color: #4CAF50;
+    --button-hover-color: #45a049;
+    --progress-color: #4CAF50;
+}
+
+/* --- Body and General Layout --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--light-text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light theme styles */
+body:not(.dark-theme) {
+    background-color: var(--light-bg-color);
+    background-image: url('./images/6.jpg'); /* Light theme background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--light-text-color);  /* Ensure light theme text color */
+}
+
+/* Dark theme styles */
+body.dark-theme {
+    background-color: var(--dark-bg-color);
+    background-image: url('./images/2.jpg'); /* Dark theme background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--dark-text-color);  /* Ensure dark theme text color */
+}
+
+/* --- Container Styling --- */
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: var(--light-container-bg);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    position: relative;
+    transition: background-color 0.3s, box-shadow 0.3s ease-in-out;
+}
+
+/* Dark theme container */
+.dark-theme .container {
+    background-color: var(--dark-container-bg);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+}
+
+/* --- Text Styling --- */
+h1 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for better readability */
+}
+/* Default (light mode) text color */
+#timer {
+    color: #000;  /* Black text color for light mode */
+}
+
+/* Dark mode text color */
+body.dark-theme #timer {
+    color: #fff;  /* White text color for dark mode */
+}
+
+/* Timer text styling */
+.timer {
+    font-size: 1.8em;
+    color: #555; /* Light mode color */
+    text-align: center;
+    transition: color 0.3s;
+}
+
+/* Timer text styling for dark theme */
+.dark-theme .timer {
+    color: #e0e0e0; /* Light text color for dark mode */
+}
+
+
+/* Text area for typing */
+.text-to-type {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    font-size: 1.2em;
+    line-height: 1.5;
+    color: #444;
+    border: 1px solid #ddd;
+    animation: typing 2s steps(30, end) 1s forwards;
+}
+
+/* Dark theme text area for typing */
+.dark-theme .text-to-type {
+    background-color: #444;
+    color: var(--dark-text-color);  /* Ensure dark mode text color */
+    border-color: #888;
+}
+
+/* Typing input box styling */
+.typing-input {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.2em;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s ease;
+}
+
+/* Disabled typing input styling */
+.typing-input:disabled {
+    background-color: #e9e9e9;
+}
+
+/* Typing input focus effect */
+.typing-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+/* --- Button Styling --- */
+.button {
+    padding: 12px 24px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+/* Dark theme button styling */
+.dark-theme .button {
+    background-color: #6bbf59;
+}
+
+/* Button hover effect */
+.button:hover:not(:disabled) {
+    background-color: var(--button-hover-color);
+    transform: scale(1.05);
+}
+
+/* Button active effect */
+.button:active {
+    transform: scale(0.98);
+}
+
+/* --- Results Styling --- */
+.results {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+.results p {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+/* --- Progress Bar Styling --- */
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+/* Progress bar fill styling */
+.progress {
+    height: 100%;
+    background-color: var(--progress-color);
+    width: 0%;
+    transition: width 0.4s ease-in-out;
+}
+
+/* Dark theme progress bar */
+.dark-theme .progress-bar {
+    background-color: #555;
+}
+/* Style for the theme toggle container */
+.theme-toggle-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* The switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide the default checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+/* The slider before (circle) */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+/* When checked (dark theme) */
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+/* When checked (move the circle to the right) */
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* --- Modal Fade In/Out --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-content {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+.modal.fade-out {
+    animation: fadeOut 0.3s ease-in forwards;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme modal */
+.dark-theme .modal-content {
+    background-color: #333;
+    color: var(--dark-text-color);
+}
+
+/* --- Close Button Styling --- */
+.close-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #e74c3c;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+/* Close button hover effect */
+.close-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Close button focus effect */
+.close-btn:focus {
+    outline: 3px solid #c0392b;
+}
+
+/* --- Theme Toggle Button Styling --- */
+.theme-toggle {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+/* Slider button that moves */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+/* Change the slider color when checked (Dark mode) */
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+/* Change position of the slider circle when checked */
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Icons inside the slider */
+.icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease-in-out;
+    font-size: 18px;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Light mode icon - positioned on the left */
+.light-icon {
+    left: 4px;
+    opacity: 1;
+}
+
+/* Dark mode icon - positioned on the right */
+.dark-icon {
+    right: 5px;
+    opacity: 0;
+}
+
+/* When the input is checked (dark theme), hide the light icon and show the dark icon */
+input:checked + .slider .light-icon {
+    opacity: 0;
+}
+
+input:checked + .slider .dark-icon {
+    opacity: 1;
+}
+
+/* --- Dark Theme Styles --- */
+body.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-theme .slider {
+    background-color: #4CAF50;
+}
+
+body.dark-theme .slider:before {
+    background-color: #ffffff;
+}
+
+/* Icon Image Sizing */
+.icon img {
+    width: 20px; /* Adjust the size as per your needs */
+    height: 20px;
+    object-fit: contain; /* Prevents stretching/distortion of the image */
+}
+/* Base text styles */
+span {
+    font-size: 1.2rem; /* Slightly larger font for better readability */
+    display: inline-block;
+    padding: 0 3px; /* Reduced padding for closer spacing */
+    border-radius: 4px; /* Rounded corners for modern design */
+    /* Removed transition for immediate feedback on typing */
+}
+
+/* Error Style - Softer Red and Pulse Animation */
+.error {
+    color: #fff;
+    font-weight: 600; /* Slightly lighter weight for better readability */
+    background-color: rgba(255, 77, 77, 0.6); /* Softer red with transparency */
+    padding: 2px 5px; /* Reduced padding for closer error text */
+    border-radius: 4px; /* Rounded edges for error highlights */
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.6); /* Subtle red glow */
+    animation: errorPulse 1.2s ease-in-out infinite; /* Smooth pulse animation */
+}
+
+/* Pulse effect for error */
+@keyframes errorPulse {
+    0% {
+        background-color: rgba(255, 77, 77, 0.6);
+        box-shadow: 0 2px 8px rgba(255, 0, 0, 0.6);
+    }
+    50% {
+        background-color: rgba(255, 77, 77, 0.7);
+        box-shadow: 0 4px 14px rgba(255, 0, 0, 0.8);
+    }
+    100% {
+        background-color: rgba(255, 77, 77, 0.6);
+        box-shadow: 0 2px 8px rgba(255, 0, 0, 0.6);
+    }
+}
+
+/* Correct Typing - Subtle Green Glow */
+.correct {
+    color: #fff;
+    font-weight: 600; /* Slightly lighter for modern feel */
+    background-color: rgba(0, 255, 0, 0.5); /* Soft green */
+    padding: 2px 5px; /* Reduced padding for correct text */
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.4); /* Subtle green glow */
+    /* Reduced transitions for immediate feedback */
+}
+
+/* Hover Effect on Correct Text (Interactive) */
+.correct:hover {
+    background-color: rgba(0, 255, 0, 0.6); /* Slightly darker green on hover */
+    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.6); /* Glow intensifies */
+}
+
+/* Visual Feedback when typing */
+.typing-feedback {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* Progress Bar Style */
+#progress {
+    height: 10px;
+    background-color: #2196F3;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+/* Dynamic Feedback for Timer and Stats */
+#timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Make modal responsive */
+@media (max-width: 600px) {
+    .modal-content {
+        font-size: 1rem;
+    }
+
+    .modal button {
+        font-size: 1rem;
+    }
+}
+/* Base Styling for the developer message */
+#developer-message {
+    font-size: 1rem; /* Larger font for emphasis */
+    color: #bbb; /* Soft grey for a clean and subtle text in light mode */
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 300; /* Lighter weight for a modern feel */
+    padding: 15px 25px;
+    border-radius: 20px; /* Rounder edges for a smoother appearance */
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.7), rgba(0, 0, 0, 0.05)); /* Soft gradient for light mode */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: all 0.3s ease; /* Smooth transitions for hover and focus states */
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards; /* Fade-in with slight upward motion */
+}
+
+/* Fade-in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dark Mode Custom Styles */
+@media (prefers-color-scheme: dark) {
+    #developer-message {
+        color: #ddd; /* Light grey text in dark mode for better contrast */
+        background: linear-gradient(45deg, rgba(30, 30, 30, 0.7), rgba(0, 0, 0, 0.2)); /* Darker gradient for dark mode */
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2); /* Lighter shadow for depth in dark mode */
+    }
+
+    /* Error State in Dark Mode */
+    .error + #developer-message {
+        color: #f39c12; /* Vibrant yellow for error state */
+        background: linear-gradient(45deg, rgba(255, 140, 0, 0.3), rgba(255, 87, 34, 0.6)); /* Warm gradient */
+        box-shadow: 0 8px 30px rgba(255, 99, 71, 0.5); /* Orange glow for error */
+        text-shadow: 0 0 8px rgba(255, 99, 71, 0.8); /* Soft red glow */
+    }
+
+    /* Hover Effect in Dark Mode */
+    #developer-message:hover {
+        color: #3498db; /* Bright blue color on hover */
+        background: linear-gradient(45deg, rgba(52, 152, 219, 0.2), rgba(52, 152, 219, 0.5)); /* Blue gradient on hover */
+        box-shadow: 0 10px 40px rgba(52, 152, 219, 0.3); /* Blue shadow effect on hover */
+        transform: translateY(-5px) rotate(1deg); /* Slight tilt and upward movement for 3D effect */
+        cursor: pointer; /* Change to pointer cursor to indicate interactivity */
+        transition: all 0.2s ease-in-out;
+    }
+}
+
+/* Light Mode Custom Styles */
+@media (prefers-color-scheme: light) {
+    #developer-message {
+        color: #555; /* Darker text for better readability in light mode */
+        background: linear-gradient(45deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 240, 0.4)); /* Light gradient for light mode */
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth in light mode */
+    }
+
+    /* Error State in Light Mode */
+    .error + #developer-message {
+        color: #ff6347; /* Vibrant red for error state */
+        background: linear-gradient(45deg, rgba(255, 165, 0, 0.3), rgba(255, 87, 34, 0.6)); /* Warm gradient */
+        box-shadow: 0 8px 30px rgba(255, 99, 71, 0.5); /* Red glow for error */
+        text-shadow: 0 0 8px rgba(255, 99, 71, 0.8); /* Soft red glow */
+    }
+
+    /* Hover Effect in Light Mode */
+    #developer-message:hover {
+        color: #3498db; /* Blue color on hover */
+        background: linear-gradient(45deg, rgba(52, 152, 219, 0.2), rgba(52, 152, 219, 0.5)); /* Blue gradient on hover */
+        box-shadow: 0 10px 40px rgba(52, 152, 219, 0.3); /* Blue shadow effect on hover */
+        transform: translateY(-5px) rotate(1deg); /* Slight tilt and upward movement for 3D effect */
+        cursor: pointer; /* Change to pointer cursor to indicate interactivity */
+        transition: all 0.2s ease-in-out;
+    }
+}
+
+/* --- Responsiveness --- */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .text-to-type {
+        font-size: 1.1em;
+        padding: 12px;
+        margin: 15px 0;
+    }
+
+    .typing-input {
+        font-size: 1em;
+        padding: 12px;
+    }
+
+    .button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+
+    .results p {
+        font-size: 1em;
+    }
+    
+    .theme-toggle-container {
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Modal responsiveness */
+    .modal-content {
+        width: 90%;
+        font-size: 1.1rem;
+    }
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2rem; /* Reduce font size on smaller screens */
+    }
+
+    .container {
+        padding: 20px; /* Adjust padding for smaller screens */
+        max-width: 100%; /* Ensure the container takes full width on small screens */
+    }
+
+    .timer {
+        font-size: 1.5em; /* Adjust timer font size */
+    }
+
+    .text-to-type {
+        font-size: 1.1em; /* Slightly smaller font for text */
+    }
+
+    .typing-input {
+        font-size: 1em; /* Make input text smaller */
+        padding: 12px; /* Adjust padding for better alignment */
+    }
+
+    .button {
+        font-size: 1em; /* Slightly smaller button */
+        padding: 10px 20px; /* Adjust button padding */
+    }
+
+    .modal-content {
+        width: 90%; /* Modal content takes up 90% of the screen */
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+
+    /* Smaller font size for developer message */
+    #developer-message {
+        font-size: 1rem; 
+        padding: 10px 15px;
+    }
+
+    /* Adjust progress bar height */
+    .progress-bar {
+        height: 8px;
+    }
+}
+
+/* For very small screens (mobile devices under 500px) */
+@media screen and (max-width: 500px) {
+    .container {
+        padding: 15px; /* Further reduce padding on very small screens */
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Even smaller font size */
+    }
+
+    .timer {
+        font-size: 1.3em; /* Reduce timer font size more */
+    }
+
+    .text-to-type {
+        font-size: 1em; /* Even smaller font for text input */
+    }
+
+    .typing-input {
+        font-size: 0.9em; /* Reduce input font size */
+    }
+
+    .button {
+        font-size: 0.9em; /* Smaller buttons on mobile */
+    }
+
+    #developer-message {
+        font-size: 0.9rem; /* Smaller font for the developer message */
+        padding: 8px 12px; /* Further reduce padding */
+    }
+
+    /* Adjust modal content for very small screens */
+    .modal-content {
+        width: 95%;
+        padding: 10px;
+    }
+}

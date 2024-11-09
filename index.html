@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Speed Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="test-header">
+            <h1>SpeedTyper</h1>
+            <div id="timer" class="timer" aria-live="polite" aria-label="Timer">00:00</div>
+        </header>
+
+        <main class="test-content">
+            <div id="text-to-type" class="text-to-type" aria-live="polite">
+                <!-- Test text will appear here -->
+            </div>
+
+            <input id="typing-input" class="typing-input" type="text" placeholder="Type the text shown above..."
+                aria-label="Typing Input" disabled>
+
+            <div class="controls">
+                <button id="start-button" class="button" aria-label="Start Typing Test">Start</button>
+                <button id="pause-button" class="button" aria-disabled="true" disabled>Pause</button>
+                <button id="reset-button" class="button" aria-disabled="true" disabled>Reset</button>
+            </div>
+
+            <section class="results">
+                <p><strong>Words Per Minute:</strong> <span id="wpm">0</span></p>
+                <p><strong>Accuracy:</strong> <span id="accuracy">100%</span></p>
+                <p><strong>Errors:</strong> <span id="errors">0</span></p>
+            </section>
+
+            <div id="progress-bar" class="progress-bar" aria-label="Typing Progress">
+                <div id="progress" class="progress"></div>
+            </div>
+            <!-- Typing feedback section -->
+            <div class="typing-feedback">
+                <!-- Other typing feedback elements -->
+                <div id="developer-message">Developed by Rani Ghazi</div>
+            </div>
+
+            <!-- Theme Toggle -->
+            <!-- Theme Toggle -->
+            <div class="theme-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider">
+                        <!-- Custom Light Mode Icon (Sun) -->
+                        <span class="icon light-icon">
+                            <img src="./icons/light.png" alt="Light Mode Icon" />
+                        </span>
+
+                        <!-- Custom Dark Mode Icon (Moon) -->
+                        <span class="icon dark-icon">
+                            <img src="./icons/dark.png" alt="Dark Mode Icon" />
+                        </span>
+                    </span>
+                </label>
+            </div>
+
+
+        </main>
+    </div>
+
+    <!-- Modal for Test Results -->
+    <div id="modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description"
+        aria-hidden="true" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2 id="modal-title">Test Complete!</h2>
+            <p id="modal-description"><strong>Words Per Minute:</strong> <span id="modal-wpm">0</span></p>
+            <p><strong>Accuracy:</strong> <span id="modal-accuracy">100%</span></p>
+            <p><strong>Errors:</strong> <span id="modal-errors">0</span></p>
+            <button id="modal-restart" class="close-btn" aria-label="Restart Test">Restart Test</button>
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script src="./JS/script.js"></script>
+</body>
+
+</html>
