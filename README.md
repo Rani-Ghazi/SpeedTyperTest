@@ -2,7 +2,10 @@
 
 This project is a website designed to help users improve their typing speed and accuracy. Users can test their typing skills by typing randomly selected sentences and receive real-time feedback on their performance, including typing speed (WPM), accuracy, and error count.
 
-![Typing Speed Test Preview](preview.png)
+![Typing Speed Test Preview](preview1.png)
+![Typing Speed Test Preview](preview2.png)
+![Typing Speed Test Preview](preview3.png)
+![Typing Speed Test Preview](preview4.png)
 
 ## Key Features
 - **Real-time Typing Metrics:** Tracks typing speed (words per minute), accuracy, and errors.
@@ -18,7 +21,7 @@ This project is a website designed to help users improve their typing speed and 
 - **Audio Feedback:** Sound effects for errors and test completion.
 
 ## Demo
-Check out the live demo [here](https://typingspeed.rf.gd/)).
+Check out the live demo [here](https://typingspeed.rf.gd/).
 
 ## How to Use
 1. Click **Start** to begin the typing test with a randomly selected sentence.
