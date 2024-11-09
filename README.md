@@ -4,8 +4,9 @@ This project is a website designed to help users improve their typing speed and 
 
 ![Typing Speed Test Preview](preview1.png)
 ![Typing Speed Test Preview](preview2.png)
-![Typing Speed Test Preview](preview3.png)
 ![Typing Speed Test Preview](preview4.png)
+![Typing Speed Test Preview](preview3.png)
+
 
 ## Key Features
 - **Real-time Typing Metrics:** Tracks typing speed (words per minute), accuracy, and errors.
